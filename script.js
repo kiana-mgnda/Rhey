@@ -6,8 +6,7 @@ const passwordInput = document.getElementById("passwordInput");
 const enterBtn = document.getElementById("enterBtn");
 const error = document.getElementById("error");
 const readBtn = document.getElementById("readBtn");
-const musicBtn = document.getElementById("musicBtn");
-const musicStatus = document.getElementById("musicStatus");
+
 
 let audioCtx;
 let master;
