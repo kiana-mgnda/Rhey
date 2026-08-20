@@ -8,34 +8,7 @@ const error = document.getElementById("error");
 const readBtn = document.getElementById("readBtn");
 
 
-let audioCtx;
-let master;
-let musicTimer;
-let playing = false;
-let step = 0;
 
-const melody = [
-  261.63, 329.63, 392.00, 329.63,
-  293.66, 349.23, 440.00, 349.23
-];
-
-function startMusic() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    master = audioCtx.createGain();
-    master.gain.value = 0.055;
-    master.connect(audioCtx.destination);
-  }
-
-  audioCtx.resume();
-  if (playing) return;
-
-  playing = true;
-  musicStatus.textContent = "Soundtrack playing ♫";
-  musicBtn.textContent = "Ⅱ Pause";
-
-  const playNote = () => {
-    if (!playing) return;
 
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
@@ -55,9 +28,7 @@ function startMusic() {
     step++;
   };
 
-  playNote();
-  musicTimer = setInterval(playNote, 700);
-}
+  
 
 function stopMusic() {
   playing = false;
@@ -87,7 +58,3 @@ readBtn.addEventListener("click", () => {
   document.getElementById("message").scrollIntoView({ behavior: "smooth" });
 });
 
-musicBtn.addEventListener("click", () => {
-  if (playing) stopMusic();
-  else startMusic();
-});
